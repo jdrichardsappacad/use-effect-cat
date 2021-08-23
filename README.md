@@ -1,6 +1,6 @@
 # Create React App Template
 
-No-frills template from which to create React applications with
+A No-frills template from which to create React applications with
 [Create React App](https://github.com/facebook/create-react-app).
 
 ```sh
