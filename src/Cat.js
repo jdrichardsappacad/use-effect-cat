@@ -23,7 +23,6 @@ const Cat = () => {
   }, [statusChange]);
 
   useEffect(() => {
-    console.log(statusChange);
     if (!codes.includes(Number(statusChange))) {
       alert(
         `Code ${statusChange} Might Exist, But It Is Not A Proper Cat Status Code`
