@@ -12,8 +12,8 @@ const Cat = () => {
 
   useEffect(() => {
     const colorInterval = setInterval(() => {
-      setColourNum(prevNum => (prevNum === 4 ? 0 : prevNum + 1));
-    }, 2000);
+      setColourNum((prevNum) => (prevNum === 4 ? 0 : prevNum + 1));
+    }, 5000);
 
     return () => clearInterval(colorInterval);
   }, []);
@@ -30,7 +30,7 @@ const Cat = () => {
   //   setStatusChange('404');
   // }, [status]);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setStatusChange(status);
     setStatus('');
@@ -41,7 +41,7 @@ const Cat = () => {
       className='cat-container'
       style={{
         backgroundColor: colours[colourNum],
-        transition: 'background-color 4s',
+        transition: 'background-color 4s'
       }}
     >
       <h1>Cat Status</h1>
@@ -53,7 +53,7 @@ const Cat = () => {
         <label htmlFor='cStatus'>
           <input
             id='cStatus'
-            onChange={e => setStatus(e.target.value)}
+            onChange={(e) => setStatus(e.target.value)}
             placeholder='find new status'
             value={status}
           />
