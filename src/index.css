@@ -28,9 +28,10 @@ input {
 }
 
 img {
-  border-radius: 5px;
-  border: 2px inset white;
+  /* border-radius: 5px; */
+  /* border: 2px inset white; */
   width: 45%;
+  box-shadow: 2px 2px 10px black;
 }
 
 .home-container {

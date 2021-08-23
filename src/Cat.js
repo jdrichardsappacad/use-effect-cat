@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { colours } from './colours';
+import { colours, codes } from './data';
 
 const Cat = () => {
   const history = useHistory();
@@ -12,7 +12,7 @@ const Cat = () => {
 
   useEffect(() => {
     const colorInterval = setInterval(() => {
-      setColourNum((prevNum) => (prevNum === 4 ? 0 : prevNum + 1));
+      setColourNum(prevNum => (prevNum === 4 ? 0 : prevNum + 1));
     }, 5000);
 
     return () => clearInterval(colorInterval);
@@ -22,15 +22,16 @@ const Cat = () => {
     localStorage.setItem('catStatus', statusChange);
   }, [statusChange]);
 
-  // useEffect(() => {
-  //   //check for alphabet
-  //   const regex = /^[A-Z]+$/i;
-  //   if (status.match(regex)) alert('Incorrect Input');
-  //   setStatus('');
-  //   setStatusChange('404');
-  // }, [status]);
+  useEffect(() => {
+    console.log(statusChange);
+    if (!codes.includes(Number(statusChange))) {
+      alert(
+        `Code ${statusChange} Might Exist, But It Is Not A Proper Cat Status Code`
+      );
+    }
+  }, [statusChange]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     setStatusChange(status);
     setStatus('');
@@ -41,7 +42,7 @@ const Cat = () => {
       className='cat-container'
       style={{
         backgroundColor: colours[colourNum],
-        transition: 'background-color 4s'
+        transition: 'background-color 4s',
       }}
     >
       <h1>Cat Status</h1>
@@ -52,8 +53,9 @@ const Cat = () => {
       <form onSubmit={handleSubmit}>
         <label htmlFor='cStatus'>
           <input
+            type='number'
             id='cStatus'
-            onChange={(e) => setStatus(e.target.value)}
+            onChange={e => setStatus(e.target.value)}
             placeholder='find new status'
             value={status}
           />
