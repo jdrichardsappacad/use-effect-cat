@@ -12,14 +12,18 @@ const Cat = () => {
 
   useEffect(() => {
     const colorInterval = setInterval(() => {
-      setColourNum(prevNum => (prevNum === 4 ? 0 : prevNum + 1));
+      setColourNum((prevNum) => (prevNum === 4 ? 0 : prevNum + 1));
     }, 5000);
 
     return () => clearInterval(colorInterval);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('catStatus', statusChange);
+    if (codes.includes(Number(statusChange))) {
+      return localStorage.setItem('catStatus', statusChange);
+    } else {
+      return localStorage.setItem('catStatus', '418');
+    }
   }, [statusChange]);
 
   useEffect(() => {
@@ -30,7 +34,7 @@ const Cat = () => {
     }
   }, [statusChange]);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setStatusChange(status);
     setStatus('');
@@ -41,7 +45,7 @@ const Cat = () => {
       className='cat-container'
       style={{
         backgroundColor: colours[colourNum],
-        transition: 'background-color 4s',
+        transition: 'background-color 4s'
       }}
     >
       <h1>Cat Status</h1>
@@ -54,7 +58,7 @@ const Cat = () => {
           <input
             type='number'
             id='cStatus'
-            onChange={e => setStatus(e.target.value)}
+            onChange={(e) => setStatus(e.target.value)}
             placeholder='find new status'
             value={status}
           />
